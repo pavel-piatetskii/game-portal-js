@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 export default function NavBar(props) {
 
   const {setContent} = props;
-  const [showSignInForm, setShowSignInForm] = useState(true);
+  const [showSignInForm, setShowSignInForm] = useState(false);
 
     return (<nav className="navbar">
     <div className="navbar__left">
