@@ -1,0 +1,58 @@
+.greeting {
+  font-size: 2vw;
+  font-family: 'Press Start 2P', cursive;
+  display: flex;
+  justify-content: space-between;
+
+  &__left {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    left: 39.93vw;
+    //top: 0;
+    height: 7%;
+    animation: greeting-left 1s none 0s 1;
+  }
+
+  &__shield {
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 48.94vw;
+    height: 7%;
+    align-items: center;
+    font-size: 3vw;
+    //font-family: 'Press Start 2P', cursive;
+    //color: black;
+    animation: greeting-shield 1s none 0s 1;
+  }
+
+  &__right {
+    height: 7%;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    right: 35.93vw;
+    top: 0;
+    animation: greeting-right 1s none 0s 1;
+  }
+
+}
+//animation: name duration timing-function delay iteration-count direction fill-mode;
+
+
+
+@keyframes greeting-left {
+  from {left: -20vw;}
+  //to {left: 40vw;}
+}
+
+@keyframes greeting-shield {
+  from {top: 120vh;}
+  //to {top: 0;}
+}
+
+@keyframes greeting-right {
+  from {right: -20vw;}
+  //to {right: 35vw;}
+}
