@@ -1,5 +1,8 @@
 const path = require("path");
-const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+
+//const webpack = require("webpack");
 
 const outputDirectory = 'dist';
 
@@ -42,11 +45,12 @@ module.exports = {
     minimize: true,
   },
   plugins: [
-    new webpack.DefinePlugin({
-      "process.env": {
-        // This has effect on the react lib size
-        NODE_ENV: JSON.stringify("development"),
-      },
-    }),
-  ],
-};
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+      favicon: "./public/favicon.ico",
+      filename: "index.html",
+      chunks: ["index"]
+    })
+  ]
+}; 

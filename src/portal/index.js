@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 //import reportWebVitals from './reportWebVitals';
 
-const appDiv = document.getElementById('app');
+const appDiv = document.getElementById('root');
 
 ReactDOM.render(
   <React.StrictMode>

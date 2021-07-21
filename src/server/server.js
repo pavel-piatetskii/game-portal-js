@@ -2,6 +2,9 @@ const express = require('express');
 
 const app = express();
 
+//app.use("/", express.static("dist"));
+app.use("/", express.static("dist"));
+
 app.listen(process.env.PORT || 8080, () => 
   console.log(`Server listening on port ${process.env.PORT || 8080}`)
 );
