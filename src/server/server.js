@@ -3,8 +3,12 @@ const path = require('path');
 
 const app = express();
 
-//app.use("/", express.static("dist"));
-app.use("/", express.static("dist"));
+app.get('/api/users', (req, res) => res.send('GET handler'));
+
+app.post('/api/users', (req, res) => console.log(req));
+
+app.use('/', express.static("dist"));
+
 
 app.get('*', (req,res) =>{
   res.sendFile(path.join(__dirname+'../../../dist/index.html'));

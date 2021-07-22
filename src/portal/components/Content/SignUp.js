@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import './SignUp.scss'
 
@@ -52,8 +53,10 @@ export default function SignUp(props) {
         input.classList.add('input-error');
         exclaim.classList.add('show');
         popup.innerText = (!input.value) ? emptyMessage : wrongMessage;
+        return false;
       }
     }
+    return true;
   }
 
   // Clear error style, exclamation sign and message 
@@ -68,7 +71,16 @@ export default function SignUp(props) {
     e.preventDefault();
 
     // Perform input fields validation
-    validateInput();
+    if (!validateInput()) return false;
+
+    // Read contents of login and password field
+    const login = document.getElementById(`signup-login`).value;
+    const password = document.getElementById(`signup-password`).value;
+
+    // Send POST-request to create new user
+    axios.post("/api/users", { login, password })
+      .then(res => console.log(res.data))
+      .catch(e => console.log(e));
   };
 
 
