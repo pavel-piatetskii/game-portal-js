@@ -81,7 +81,7 @@ export default function SignUp(props) {
     const password = document.getElementById(`signup-password`).value;
 
     // Send POST-request to create new user
-    axios.post("/api/users", { login, password }, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
+    axios.post("/api/users", { login, password })//, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
       .then(res => console.log(res.data))
       .catch(e => console.log(e));
   };
