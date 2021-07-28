@@ -10,7 +10,6 @@ export default function SignUp(props) {
       name: 'login',
       label: 'ENTER LOGIN',
       type: 'login',
-      placeholder: 'boris',
       emptyMessage: 'Please enter login',
       wrongMessage: 'Login should be 3-32 characters long',
       checkCorrect: function(str) {
@@ -21,7 +20,6 @@ export default function SignUp(props) {
       name: 'password',
       label: 'ENTER PASSWORD',
       type: 'password',
-      placeholder: 'borisbritva',
       emptyMessage: 'Please enter password',
       wrongMessage: 'Password should be at least 8 characteres long',
       checkCorrect: function(str) {
@@ -32,7 +30,6 @@ export default function SignUp(props) {
       name: 'password-repeat',
       label: 'REPEAT PASSWORD',
       type: 'password',
-      placeholder: 'borisbritva',
       emptyMessage: 'Please repeat password',
       wrongMessage: 'Passwords do not match',
       checkCorrect: function(str) {
@@ -105,7 +102,6 @@ export default function SignUp(props) {
               name={`${field.name}`}
               autoComplete='off'
               type={field.type}
-              value={field.placeholder}
               onFocus={(e) => clearError(e.target.id)}></input>
           </div>
         )}
