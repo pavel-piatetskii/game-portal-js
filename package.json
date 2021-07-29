@@ -9,7 +9,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev-build": "webpack --mode development --watch",
-    "dev-server": "PORT=3000 nodemon ./src/server/server.js"
+    "dev-server": "PORT=3000 nodemon ./src/server/server.js",
+    "db-reset": "node -e 'require(`./src/server/db/index.js`).reset()'"
   },
   "repository": {
     "type": "git",
