@@ -9,7 +9,7 @@ module.exports = (router, db) => {
   router.post('/users', (req, res) => {
     db.addUser(req.body)
       .then(data => res.sendStatus(200))
-      .catch(e => {console.log(e); res.send(e)});
+      .catch(e => {console.log(e); res.status(200).send('exists')});
     // db.getAllUsers()
     //   .then(data => res.send({data}))
     //   .catch(e => {console.log(e); res.send(e)})

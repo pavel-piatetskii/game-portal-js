@@ -38,25 +38,32 @@ export default function SignUp(props) {
     }, 
   ];
 
+  const showError = function(fieldName, message) {
+    const input = document.getElementById(`signup-${fieldName}`);
+    const exclaim = document.getElementById(`exclaim-${fieldName}`);
+    const popup = document.getElementById(`popup-${fieldName}`);
+
+    input.classList.add('input-error');
+    exclaim.classList.add('show');
+    popup.innerText = message;
+  }
+
   /** Check that each input field contains 
    *  text and this text fits requirements */
   const validateInput = function () {
+    let valid = true;
     for (const field of signUpForm) {
 
       const { name, emptyMessage, wrongMessage, checkCorrect } = field;
-
       const input = document.getElementById(`signup-${name}`);
-      const exclaim = document.getElementById(`exclaim-${name}`);
-      const popup = document.getElementById(`popup-${name}`);
       
       if (!input.value || !checkCorrect(input.value)) {
-        input.classList.add('input-error');
-        exclaim.classList.add('show');
-        popup.innerText = (!input.value) ? emptyMessage : wrongMessage;
-        return false;
+        const message = (!input.value) ? emptyMessage : wrongMessage;
+        showError(name, message)
+        valid = false;
       }
     }
-    return true;
+    return valid;
   }
 
   // Clear error style, exclamation sign and message 
@@ -79,7 +86,9 @@ export default function SignUp(props) {
 
     // Send POST-request to create new user
     axios.post("/api/users", { login, password })//, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
-      .then(res => console.log(res.data))
+      .then(res => {
+        if (res.data === 'exists') showError('login', 'Login exists - try another')
+      })
       .catch(e => console.log(e));
   };
 
