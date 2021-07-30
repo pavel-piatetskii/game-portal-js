@@ -4,6 +4,8 @@ import './SignUp.scss'
 
 export default function SignUp(props) {
 
+  const [showForm, setShowForm] = useState(true);
+
   // Data for input fields, thier validation and error messaging
   const signUpForm = [
     {
@@ -87,7 +89,12 @@ export default function SignUp(props) {
     // Send POST-request to create new user
     axios.post("/api/users", { login, password })//, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
       .then(res => {
-        if (res.data === 'exists') showError('login', 'Login exists - try another')
+        if (res.data === 'exists') {
+          showError('login', 'Login exists - try another');
+          return false;
+        };
+        setShowForm(false);
+        setTimeout(() => window.location.replace('/'), 2000);
       })
       .catch(e => console.log(e));
   };
@@ -95,7 +102,7 @@ export default function SignUp(props) {
 
   return (
     <section className="signup">
-      <form className="signup__form" onSubmit={(e) => clickSubmit(e)} >
+      {showForm && <form className="signup__form" onSubmit={(e) => clickSubmit(e)} >
         <h2 className="signup__form__header">SIGN UP</h2>
 
         {signUpForm.map(field => 
@@ -115,7 +122,8 @@ export default function SignUp(props) {
           </div>
         )}
         <button className="signup__form__button">SUBMIT</button>
-      </form>
+      </form>}
+      {!showForm && <p>Successfully registred! Redirecting to the Homepage</p>}
     </section>
 
   );
